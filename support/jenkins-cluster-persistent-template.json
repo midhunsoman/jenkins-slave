@@ -166,7 +166,7 @@
                          "uri": "${GIT_URI}",
                          "ref": "${GIT_REF}"
                      },
-                     "contextDir": "jenkins-slave02"
+                     "contextDir": "jenkins-slave"
                 },
                 "strategy": {
                     "type": "Docker",
@@ -431,7 +431,7 @@
         {
             "name": "APPLICATION_NAME",
             "description": "Application Name",
-            "value": "jenkins-new01"
+            "value": "jenkins-new02"
         },
         {
            "description": "Custom hostname.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
@@ -457,7 +457,7 @@
         {
             "name": "GIT_URI",
             "description": "Git Repository",
-            "value": "https://github.com/sabre1041/ose-jenkins-cluster.git"
+            "value": "https://github.com/midhunsoman/jenkins-slave.git"
         },
         {
             "name": "GIT_REF",
