@@ -18,11 +18,11 @@ RUN cd /usr/local/ && \
 ENV PATH=$PATH:/usr/local/openlogic-openjdk-8u262-b10-linux-64/bin
 RUN java -version
 
+COPY     apache-maven-3.8.4-bin.tar.gz /usr/share/
 
 RUN useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
-    curl -O  http://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz && \
-    tar -zvxf apache-maven-3.8.4-bin.tar.gz -C /usr/share \
+    tar -zvxf /usr/share/apache-maven-3.8.4-bin.tar.gz -C /usr/share \
       && mv /usr/share/apache-maven-3.8.4 /usr/share/maven \
       && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
