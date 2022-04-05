@@ -10,11 +10,16 @@ ENV JAVA_HOME /usr/lib/jvm/java
 RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/subscription-manager.conf 
 RUN cat /etc/yum/pluginconf.d/subscription-manager.conf 
 
-RUN yum repolist all 
+RUN cd /usr/local/ && \
+    curl -O https://builds.openlogic.com/downloadJDK/openlogic-openjdk/8u262-b10/openlogic-openjdk-8u262-b10-linux-x64.tar.gz && \
+    tar -xvzf openlogic-openjdk-8u262-b10-linux-x64.tar.gz && \
+    ls openlogic-openjdk-8u262-b10-linux-64
 
-RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel && \
-    yum clean all && \
-    useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
+ENV PATH=$PATH:/usr/local/openlogic-openjdk-8u262-b10-linux-64/bin
+RUN java -version
+
+
+RUN useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
     curl -fsSL http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | tar xzf - -C /usr/share \
       && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
