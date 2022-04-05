@@ -6,8 +6,9 @@ ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.8.4
 ENV JAVA_HOME /usr/lib/jvm/java
 
-RUN yum repolist all && \
-    yum install -y git tar zip unzip which java-1.8.0-openjdk-devel && \
+RUN yum repolist all 
+
+RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel && \
     yum clean all && \
     useradd -u 1001 -r -m -d ${HOME} -s /sbin/nologin -c "Jenkins Slave" jenkins-slave && \
     mkdir -p /opt/jenkins-slave/bin /var/lib/jenkins && \
