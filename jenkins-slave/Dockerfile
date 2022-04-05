@@ -6,6 +6,10 @@ ENV HOME /opt/jenkins-slave
 ENV MAVEN_VERSION 3.8.4
 ENV JAVA_HOME /usr/lib/jvm/java
 
+
+RUN sed -i 's/enabled=1/enabled=0/g' /etc/yum/pluginconf.d/subscription-manager.conf 
+RUN cat /etc/yum/pluginconf.d/subscription-manager.conf 
+
 RUN yum repolist all 
 
 RUN yum install -y git tar zip unzip which java-1.8.0-openjdk-devel && \
